@@ -3,6 +3,7 @@ pandas
 numpy
 matplotlib
 seaborn
-scikit_learn
+scikit-learn
 joblib
 gunicorn
+reportlab
