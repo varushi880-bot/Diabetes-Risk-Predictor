@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> AI Diabetes Predictor</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <h1> AI diabetes Predictor</h1>
+            <p> Enter your health details to predict diabetes risk.</p>
+            <form method="POST">
+                <label>Pregnancies</label><br>
+                <input type="number" name="pregnancies" min="0",max="20" placeholder="e.g. 3" title="Enter a value between 0 and 20 ."required><br><br>
+
+                <label>Glucose</label><br>
+                <input type="number" name="glucose" min="0" max="300" placeholder="e.g. 90" title="Glucose must be between 0 and 300." required><br><br>
+
+                <label>Blood Pressure</label><br>
+                <input type="number" name="bloodpressure" min="0",max="230" placeholder="e.g. 127" title="Enter a value between between 0 to 200."required><br><br>
+
+                <label>Skin Thickness</label><br>
+                <input type="number" step="0.1" name="skinthickness" min="0", max="55" placeholder="e.g. 34.4" title="Enter a value between 0 to 100."required><br><br>
+
+                <label>Insulin</label><br>
+                <input type="number" step="0.1" name="insulin" min="0",max="900" placeholder="e.g. 56.5" title="enter a value between 0 to 900" required><br><br>
+
+                <label>BMI</label><br>
+                <input type="number" step="0.1" name="bmi" min="10" max="70" placeholder="e.g. 21.3" title="BMI must be between 10 and 70."required><br><br>
+
+                <label>Diabetes Pedigree Function</label><br>
+                <input type="number"step="0.001" name="dpf" min="0.1",max="3.0" placeholder="e.g. 0.128" required><br><br>
+
+                <label>Age</label><br>
+                <input type="number" name="age" min="1" max="120" placeholder="e.g. 67" title="Age must be between 1 and 120." required><br><br>
+
+                <button type="submit">Predict</button>
+                <button type="Reset" class="reset-btn">Reset</button>
+                <a href="/download">
+                    <button type="button"> 
+                        Download Report
+                    </button>
+                </a>
+                    
+            </form>
+            {% if result %}
+                 {% if result=="Diabetic"%}
+                     <div class="result diabetic">
+                         {{result}}
+                     </div>
+                  {%else%}
+                      <div class="result not-diabetic">
+                           {{result}}
+                      </div>
+                  {%endif%}
+                  <p class="confidence">
+                      Confidence:{{confidence}}%
+                  </p>
+                  <p class="advice">
+                     <strong>Advice:</strong>{{advice}}
+                  </p>  
+                  <p class="risk">
+                    <strong>Risk Level:</strong>{{risk}}
+                  </p>  
+            {%endif%}
+       </div>
+    </body>
+</html>
